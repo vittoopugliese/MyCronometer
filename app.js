@@ -5,7 +5,7 @@ const $pedido = document.querySelector('#form');
 const $horas = document.querySelector('#mostrarHoras');
 const $minutos = document.querySelector('#mostrarMinutos');
 const $segundos = document.querySelector('#mostrarSegundos');
-
+const $check = document.querySelector('#check');
 
 function calcularTiempoDeEjecucion(horas, minutos, segundos) {
     while (horas) {
@@ -16,12 +16,10 @@ function calcularTiempoDeEjecucion(horas, minutos, segundos) {
         segundos += 60;
         minutos --;
     }
-
     return segundos;
 };
 
 function calcularUnidadesFinales(horas, minutos, segundos){
-    
     while (segundos > 60) {
         minutos += 1;
         segundos -= 60;
@@ -48,7 +46,6 @@ function actualizarValor(horas, minutos, segundos){
         segundos = 59;
         horas--;
     }
-
     return {'horas': horas, 'minutos' : minutos, 'segundos' : segundos};
 }
 
@@ -60,15 +57,15 @@ function mostrarReloj(horas, minutos, segundos){
     }
 
     if(minutos < 10){
-        $minutos.innerHTML = `|| 0${minutos} `;
+        $minutos.innerHTML = `:0${minutos} `;
     }else{
-        $minutos.innerHTML = `|| ${minutos} `;
+        $minutos.innerHTML = `:${minutos} `;
     }
 
     if(segundos < 10){
-        $segundos.innerHTML = `|| 0${segundos}`;
+        $segundos.innerHTML = `:0${segundos}`;
     }else{
-        $segundos.innerHTML = `|| ${segundos}`;
+        $segundos.innerHTML = `:${segundos}`;
     }
 }
 
@@ -85,12 +82,9 @@ $pedido['submit'].addEventListener('click', () => {
     segundos = tiempo['segundos'];
 
     for (i = 0; i <= segundosTotales; i++) {
-
         setTimeout(() => {
             mostrarReloj(horas, minutos, segundos);
-            
             segundos--;
-
             const nuevoValor = actualizarValor(horas, minutos, segundos) 
             horas = nuevoValor['horas'];
             minutos = nuevoValor['minutos'];
@@ -98,8 +92,8 @@ $pedido['submit'].addEventListener('click', () => {
 
         }, (i + 1) * 1000);
     }
+    
 })
-
 
 $time.addEventListener('click', () => {
     $pedido.style.left = '800%';

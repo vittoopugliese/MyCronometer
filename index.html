@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="files/favicon.png"/>
     <link rel="stylesheet" href="styles.css">
-    <title>Cronometer</title>
+    <title>MyCronometer</title>
 </head>
 
 <body>
 <div id="wrapper">
-    <p id="cronometer"></p>
-    <h1>- Cronometer -</h1>
+    <h1>- MyCronometer -</h1>
     <form class="form" id="form" style="display: flex;">
+
             <div id="time-wrapper">
-                <label for="horas">Hours</label>
-                <input type="number" id="horas" name="horas">
+                <label for="horas">Hours  </label>
+                <input type="number" id="horas">
             </div>
     
             <div id="time-wrapper">
@@ -24,17 +25,24 @@
             </div>
     
             <div id="time-wrapper">
-                <label for="minutos">Seconds</label>
+                <label for="segundos">Seconds</label>
                 <input type="number" id="segundos">
             </div>
+
+            <div id="alert">
+                <label>Alert on complete</label>
+                <input type="checkbox" id="check">
+            </div>
+
             <button id="time" class="btn" type="button" name="submit">Submit</button>
+
     </form>
 
-    <form class="form" id="time-form" style="display: flex;padding:30px;left: 500%;">
+    <form class="form" id="time-form" style="display: flex;padding:20px;left: 500%;">
         <div id="tiempo">
             <h3 id="mostrarHoras">00</h3>
-            <h3 id="mostrarMinutos"> ||00 </h3>
-            <h3 id="mostrarSegundos">|| 00</h3>
+            <h3 id="mostrarMinutos">:00 </h3>
+            <h3 id="mostrarSegundos">:00</h3>
         </div>
         <button type="button" class="btn" onclick="document.location.reload(true)">Reset</button>
     </form>
