@@ -1,6 +1,4 @@
-const cronometer = document.getElementById('cronometer')
-const pedido = document.querySelector('#form')
-const tiempo = document.querySelector('#tiempo')
+const $pedido = document.querySelector('#form');
 
 function calcularTiempoDeEjecucion(horas, minutos, segundos) {
     while (horas) {
@@ -47,10 +45,10 @@ function actualizarValor(horas, minutos, segundos){
     return {'horas': horas, 'minutos' : minutos, 'segundos' : segundos};
 }
 
-pedido.addEventListener('click', () => {
-    let horas = document.querySelector('#horas').value
-    let minutos = document.querySelector('#minutos').value
-    let segundos = document.querySelector('#segundos').value
+$pedido['submit'].addEventListener('click', () => {
+    let horas = Number(document.querySelector('#horas').value)
+    let minutos = Number(document.querySelector('#minutos').value)
+    let segundos = Number(document.querySelector('#segundos').value)
 
     const segundosTotales = calcularTiempoDeEjecucion(horas, minutos, segundos);
 
