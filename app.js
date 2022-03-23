@@ -1,18 +1,24 @@
-// nahuel
+const $time = document.querySelector('#time');
+const $submit = document.querySelector('#submit');
+const $timeForm = document.querySelector('#time-form');
 const $pedido = document.querySelector('#form');
+const $horas = document.querySelector('#mostrarHoras');
+const $minutos = document.querySelector('#mostrarMinutos');
+const $segundos = document.querySelector('#mostrarSegundos');
 
-// function calcularTiempoDeEjecucion(horas, minutos, segundos) {
-//     while (horas) {
-//         minutos --;
-//         horas --;
-//     }
-//     while (minutos) {
-//         segundos += 60;
-//         minutos --;
-//     }
 
-//     return segundos;
-// };
+function calcularTiempoDeEjecucion(horas, minutos, segundos) {
+    while (horas) {
+        minutos +=60;
+        horas --;
+    }
+    while (minutos) {
+        segundos += 60;
+        minutos --;
+    }
+
+    return segundos;
+};
 
 function calcularUnidadesFinales(horas, minutos, segundos){
     
@@ -46,10 +52,30 @@ function actualizarValor(horas, minutos, segundos){
     return {'horas': horas, 'minutos' : minutos, 'segundos' : segundos};
 }
 
+function mostrarReloj(horas, minutos, segundos){
+    if (horas < 10){
+        $horas.innerHTML = `0${horas} `;
+    }else{
+        $horas.innerHTML = `${horas} `;
+    }
+
+    if(minutos < 10){
+        $minutos.innerHTML = `|| 0${minutos} `;
+    }else{
+        $minutos.innerHTML = `|| ${minutos} `;
+    }
+
+    if(segundos < 10){
+        $segundos.innerHTML = `|| 0${segundos}`;
+    }else{
+        $segundos.innerHTML = `|| ${segundos}`;
+    }
+}
+
 $pedido['submit'].addEventListener('click', () => {
-    let horas = Number(document.querySelector('#horas').value)
-    let minutos = Number(document.querySelector('#minutos').value)
-    let segundos = Number(document.querySelector('#segundos').value)
+    let horas = Number($pedido['horas'].value);
+    let minutos = Number($pedido['minutos'].value);
+    let segundos = Number($pedido['segundos'].value);
 
     const segundosTotales = calcularTiempoDeEjecucion(horas, minutos, segundos);
 
@@ -61,9 +87,8 @@ $pedido['submit'].addEventListener('click', () => {
     for (i = 0; i <= segundosTotales; i++) {
 
         setTimeout(() => {
+            mostrarReloj(horas, minutos, segundos);
             
-            document.querySelector('#tiempo').innerHTML = `${horas} || ${minutos} || ${segundos}`
-
             segundos--;
 
             const nuevoValor = actualizarValor(horas, minutos, segundos) 
@@ -72,19 +97,12 @@ $pedido['submit'].addEventListener('click', () => {
             segundos = nuevoValor['segundos'];
 
         }, (i + 1) * 1000);
-
-        
     }
 })
 
-// vittorio
-
-const $time = document.querySelector('#time')
-const $submit = document.querySelector('#submit')
-const $timeForm = document.querySelector('#time-form')
 
 $time.addEventListener('click', () => {
-    $pedido.style.left = '800%'
-    $timeForm.style.left = '50%'
+    $pedido.style.left = '800%';
+    $timeForm.style.left = '50%';
 })
 

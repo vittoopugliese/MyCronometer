@@ -15,7 +15,7 @@
     <form class="form" id="form" style="display: flex;">
             <div id="time-wrapper">
                 <label for="horas">Hours</label>
-                <input type="number" id="horas">
+                <input type="number" id="horas" name="horas">
             </div>
     
             <div id="time-wrapper">
@@ -31,7 +31,11 @@
     </form>
 
     <form class="form" id="time-form" style="display: flex;padding:30px;left: 500%;">
-        <h3 id="tiempo">30 - 2 - 4</h3>
+        <div id="tiempo">
+            <h3 id="mostrarHoras">00</h3>
+            <h3 id="mostrarMinutos"> ||00 </h3>
+            <h3 id="mostrarSegundos">|| 00</h3>
+        </div>
         <button type="button" class="btn" onclick="document.location.reload(true)">Reset</button>
     </form>
 
