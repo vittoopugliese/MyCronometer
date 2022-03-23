@@ -11,8 +11,8 @@
 <body>
 <div id="wrapper">
     <p id="cronometer"></p>
-    <h1>Cronometer</h1>
-    <form id="form">
+    <h1>- Cronometer -</h1>
+    <form class="form" id="form" style="display: flex;">
             <div id="time-wrapper">
                 <label for="horas">Hours</label>
                 <input type="number" id="horas">
@@ -27,12 +27,15 @@
                 <label for="minutos">Seconds</label>
                 <input type="number" id="segundos">
             </div>
-            <button type="button" id="btn" name="submit">Submit</button>
+            <button id="time" class="btn" type="button" name="submit">Submit</button>
     </form>
 
-    <div id="cronometer-time"></div>
+    <form class="form" id="time-form" style="display: flex;padding:30px;left: 500%;">
+        <h3 id="tiempo">30 - 2 - 4</h3>
+        <button type="button" class="btn" onclick="document.location.reload(true)">Reset</button>
+    </form>
 
-    <h1 id="tiempo"></h1>
+    <h2>Powered by nahuel3pro & vittorio</h2>
 </div>
 <script src="app.js"></script>
 </body>
