@@ -81,9 +81,10 @@ function verificarSiTermino(horas, minutos, segundos){
 }
 
 function tocarAlarma(){
+    $audio.play();
     setTimeout(() =>{
-        $audio.play();
-    }, 500);
+        alert('End !!')
+    }, 1000);
 }
 
 $pedido['submit'].addEventListener('click', () => {
