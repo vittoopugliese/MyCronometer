@@ -7,6 +7,7 @@ const $minutos = document.querySelector('#mostrarMinutos');
 const $segundos = document.querySelector('#mostrarSegundos');
 const $check = document.querySelector('#check');
 const $numeros = document.querySelectorAll('.numero');
+const $audio = document.querySelector('#myAlert');
 
 function calcularTiempoDeEjecucion(horas, minutos, segundos) {
     while (horas) {
@@ -75,10 +76,21 @@ function ocultarPedido(){
     $timeForm.style.left = '50%';
 }
 
+function verificarSiTermino(horas, minutos, segundos){
+    return (horas === 0 && minutos === 0 && segundos === 0);
+}
+
+function tocarAlarma(){
+    setTimeout(() =>{
+        $audio.play();
+    }, 500);
+}
+
 $pedido['submit'].addEventListener('click', () => {
     let horas = Number($pedido['horas'].value);
     let minutos = Number($pedido['minutos'].value);
     let segundos = Number($pedido['segundos'].value);
+    const $playAudio = document.querySelector('#check');
 
     if (horas >= 0 && minutos >= 0 && segundos > 0) {
         ocultarPedido();
@@ -98,6 +110,10 @@ $pedido['submit'].addEventListener('click', () => {
                 horas = nuevoValor['horas'];
                 minutos = nuevoValor['minutos'];
                 segundos = nuevoValor['segundos'];
+
+                if(verificarSiTermino(horas, minutos, segundos) && $playAudio.checked){
+                    tocarAlarma();
+                };
 
             }, (i + 1) * 1000);
         }
