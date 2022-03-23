@@ -10,27 +10,32 @@
 </head>
 
 <body>
+
+    <audio id="myAlert">
+        <source src="files/Alarm_sound.mp3" type=" audio/ogg">
+    </audio>
+
 <div id="wrapper">
     <h1>- MyCronometer -</h1>
     <form class="form" id="form" style="display: flex;">
 
             <div id="time-wrapper">
                 <label for="horas">Hours  </label>
-                <input type="number" id="horas">
+                <input class="numero" type="number" id="horas" min="0" value="0">
             </div>
     
             <div id="time-wrapper">
                 <label for="minutos">Minutes</label>
-                <input type="number" id="minutos">
+                <input class="numero" type="number" id="minutos" min="0" value="0">
             </div>
     
             <div id="time-wrapper">
                 <label for="segundos">Seconds</label>
-                <input type="number" id="segundos">
+                <input class="numero" type="number" id="segundos" min="1" value="0">
             </div>
 
             <div id="alert">
-                <label>Alert on complete</label>
+                <label for="check">Alert on complete</label>
                 <input type="checkbox" id="check">
             </div>
 
@@ -40,9 +45,9 @@
 
     <form class="form" id="time-form" style="display: flex;padding:20px;left: 500%;">
         <div id="tiempo">
-            <h3 id="mostrarHoras">00</h3>
-            <h3 id="mostrarMinutos">:00 </h3>
-            <h3 id="mostrarSegundos">:00</h3>
+            <h3 id="mostrarHoras">--</h3>
+            <h3 id="mostrarMinutos">:-- </h3>
+            <h3 id="mostrarSegundos">:--</h3>
         </div>
         <button type="button" class="btn" onclick="document.location.reload(true)">Reset</button>
     </form>
