@@ -1,17 +1,18 @@
+// nahuel
 const $pedido = document.querySelector('#form');
 
-function calcularTiempoDeEjecucion(horas, minutos, segundos) {
-    while (horas) {
-        minutos --;
-        horas --;
-    }
-    while (minutos) {
-        segundos += 60;
-        minutos --;
-    }
+// function calcularTiempoDeEjecucion(horas, minutos, segundos) {
+//     while (horas) {
+//         minutos --;
+//         horas --;
+//     }
+//     while (minutos) {
+//         segundos += 60;
+//         minutos --;
+//     }
 
-    return segundos;
-};
+//     return segundos;
+// };
 
 function calcularUnidadesFinales(horas, minutos, segundos){
     
@@ -75,3 +76,15 @@ $pedido['submit'].addEventListener('click', () => {
         
     }
 })
+
+// vittorio
+
+const $time = document.querySelector('#time')
+const $submit = document.querySelector('#submit')
+const $timeForm = document.querySelector('#time-form')
+
+$time.addEventListener('click', () => {
+    $pedido.style.left = '800%'
+    $timeForm.style.left = '50%'
+})
+
