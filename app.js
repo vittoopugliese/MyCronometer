@@ -6,6 +6,7 @@ const $horas = document.querySelector('#mostrarHoras');
 const $minutos = document.querySelector('#mostrarMinutos');
 const $segundos = document.querySelector('#mostrarSegundos');
 const $check = document.querySelector('#check');
+const $numeros = document.querySelectorAll('.numero');
 
 function calcularTiempoDeEjecucion(horas, minutos, segundos) {
     while (horas) {
@@ -69,34 +70,45 @@ function mostrarReloj(horas, minutos, segundos){
     }
 }
 
+function ocultarPedido(){
+    $pedido.style.left = '800%';
+    $timeForm.style.left = '50%';
+}
+
 $pedido['submit'].addEventListener('click', () => {
     let horas = Number($pedido['horas'].value);
     let minutos = Number($pedido['minutos'].value);
     let segundos = Number($pedido['segundos'].value);
 
-    const segundosTotales = calcularTiempoDeEjecucion(horas, minutos, segundos);
-
-    const tiempo = calcularUnidadesFinales(horas, minutos, segundos);
-    horas = tiempo['horas'];
-    minutos = tiempo['minutos'];
-    segundos = tiempo['segundos'];
-
-    for (i = 0; i <= segundosTotales; i++) {
-        setTimeout(() => {
-            mostrarReloj(horas, minutos, segundos);
-            segundos--;
-            const nuevoValor = actualizarValor(horas, minutos, segundos) 
-            horas = nuevoValor['horas'];
-            minutos = nuevoValor['minutos'];
-            segundos = nuevoValor['segundos'];
-
-        }, (i + 1) * 1000);
-    }
+    if (horas >= 0 && minutos >= 0 && segundos > 0) {
+        ocultarPedido();
     
+        const segundosTotales = calcularTiempoDeEjecucion(horas, minutos, segundos);
+
+        const tiempo = calcularUnidadesFinales(horas, minutos, segundos);
+        horas = tiempo['horas'];
+        minutos = tiempo['minutos'];
+        segundos = tiempo['segundos'];
+
+        for (i = 0; i <= segundosTotales; i++) {
+            setTimeout(() => {
+                mostrarReloj(horas, minutos, segundos);
+                segundos--;
+                const nuevoValor = actualizarValor(horas, minutos, segundos) 
+                horas = nuevoValor['horas'];
+                minutos = nuevoValor['minutos'];
+                segundos = nuevoValor['segundos'];
+
+            }, (i + 1) * 1000);
+        }
+    }    
 })
 
-$time.addEventListener('click', () => {
-    $pedido.style.left = '800%';
-    $timeForm.style.left = '50%';
-})
 
+$numeros.forEach((value, index) => {
+    value.addEventListener('change', () => {
+        if (value.valueAsNumber < 0) {
+            $numeros[index].value = 0;
+        }
+    })
+})
