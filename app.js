@@ -10,25 +10,21 @@ const $numeros = document.querySelectorAll('.numero');
 const $audio = document.querySelector('#myAlert');
 
 function calcularTiempoDeEjecucion(horas, minutos, segundos) {
-    while (horas) {
-        minutos +=60;
-        horas --;
-    }
-    while (minutos) {
-        segundos += 60;
-        minutos --;
-    }
+    segundos += horas * 3600;
+    segundos += minutos * 60;
+    
     return segundos;
 };
 
 function calcularUnidadesFinales(horas, minutos, segundos){
-    while (segundos > 60) {
-        minutos += 1;
-        segundos -= 60;
+    if(segundos>60){
+        minutos += Math.trunc(segundos/60);
+        segundos = Math.trunc(segundos % 60);
     }
-    while (minutos > 60) {
-        minutos -= 60;
-        horas += 1;
+    
+    if(minutos>60){
+        horas += Math.trunc(minutos / 60);
+        minutos = Math.trunc(minutos % 60);
     }
 
     return {'horas': horas, 'minutos' : minutos, 'segundos' : segundos};
@@ -76,10 +72,6 @@ function ocultarPedido(){
     $timeForm.style.left = '50%';
 }
 
-function verificarSiTermino(horas, minutos, segundos){
-    return (horas === 0 && minutos === 0 && segundos === 0);
-}
-
 function tocarAlarma(){
     $audio.play();
     setTimeout(() =>{
@@ -93,7 +85,7 @@ $pedido['submit'].addEventListener('click', () => {
     let segundos = Number($pedido['segundos'].value);
     const $playAudio = document.querySelector('#check');
 
-    if (horas >= 0 && minutos >= 0 && segundos > 0) {
+    if ((horas >= 0 || minutos >= 0 || segundos > 0) && !(horas < 0 || minutos < 0 || segundos < 0)) {
         ocultarPedido();
     
         const segundosTotales = calcularTiempoDeEjecucion(horas, minutos, segundos);
@@ -112,7 +104,7 @@ $pedido['submit'].addEventListener('click', () => {
                 minutos = nuevoValor['minutos'];
                 segundos = nuevoValor['segundos'];
 
-                if(verificarSiTermino(horas, minutos, segundos) && $playAudio.checked){
+                if((horas === 0 && minutos === 0 && segundos === 0) && $playAudio.checked){
                     tocarAlarma();
                 };
 
